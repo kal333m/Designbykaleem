@@ -70,25 +70,28 @@ export function Hero() {
           variants={item}
           className="mt-6 text-lg text-muted leading-relaxed max-w-xl"
         >
-          I design B2B and AI products — the high-stakes, unglamorous kind
+          I design B2B and AI products: the high-stakes, unglamorous kind
           where getting it wrong costs someone a workday. Most AI tools
           still look like the model designed them. Mine don&apos;t.
         </motion.p>
 
-        <motion.div variants={item} className="mt-10 flex items-center gap-5">
+        <motion.p variants={item} className="mt-10 text-lg">
+          Take a look at{" "}
           <a
             href="#work"
-            className="rounded-[var(--radius-pill)] bg-foreground text-background px-6 py-3 text-sm font-medium hover:opacity-85 transition-opacity"
+            className="font-medium text-foreground visited:text-foreground underline decoration-border decoration-1 underline-offset-4 hover:decoration-accent hover:text-accent transition-colors"
           >
-            See the work
+            the work
           </a>
+          , or just{" "}
           <a
             href="#contact"
-            className="text-sm font-medium text-foreground hover:text-accent transition-colors"
+            className="font-medium text-foreground visited:text-foreground underline decoration-border decoration-1 underline-offset-4 hover:decoration-accent hover:text-accent transition-colors"
           >
-            Say hello →
+            say hello
           </a>
-        </motion.div>
+          .
+        </motion.p>
       </motion.div>
 
       <motion.div
