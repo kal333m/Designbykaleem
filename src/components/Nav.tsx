@@ -22,13 +22,7 @@ export function Nav() {
         scrolled && "backdrop-blur-md bg-background/70 border-b border-border"
       )}
     >
-      <div className="max-w-6xl mx-auto px-6 sm:px-10 h-16 flex items-center justify-between">
-        <a
-          href="#top"
-          className="text-sm font-semibold tracking-tight text-foreground visited:text-foreground hover:text-accent transition-colors"
-        >
-          Kaleem Ali
-        </a>
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 h-16 flex items-center justify-end">
         <button
           onClick={openContact}
           className={clsx(

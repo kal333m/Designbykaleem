@@ -47,8 +47,9 @@ export function Hero() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="max-w-3xl mx-auto w-full pt-16"
+        className="max-w-6xl mx-auto w-full pt-16"
       >
+        <div className="max-w-2xl">
         <motion.div variants={item} className="mb-6">
           <span className="inline-flex items-center gap-2 rounded-[var(--radius-pill)] border border-border bg-surface/80 px-3.5 py-1.5 text-xs font-medium text-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-accent" />
@@ -95,6 +96,7 @@ export function Hero() {
           </button>
           .
         </motion.p>
+        </div>
       </motion.div>
 
       <motion.div
