@@ -63,16 +63,16 @@ export function Hero() {
           variants={item}
           className="mt-3 text-2xl sm:text-3xl font-medium text-muted tracking-tight"
         >
-          Product Designer — B2B &amp; B2C, Web &amp; Mobile.
+          Engineer <span className="text-foreground">→</span> Designer.
         </motion.p>
 
         <motion.p
           variants={item}
           className="mt-6 text-lg text-muted leading-relaxed max-w-xl"
         >
-          I design and ship products across web and mobile — from
-          first-launch B2B tools to consumer apps used at scale. Browse
-          selected work below, filtered by what matters to you.
+          I design B2B and AI products — the high-stakes, unglamorous kind
+          where getting it wrong costs someone a workday. Most AI tools
+          still look like the model designed them. Mine don&apos;t.
         </motion.p>
 
         <motion.div variants={item} className="mt-10 flex items-center gap-5">
@@ -80,13 +80,13 @@ export function Hero() {
             href="#work"
             className="rounded-[var(--radius-pill)] bg-foreground text-background px-6 py-3 text-sm font-medium hover:opacity-85 transition-opacity"
           >
-            View Work
+            See the work
           </a>
           <a
             href="#contact"
             className="text-sm font-medium text-foreground hover:text-accent transition-colors"
           >
-            Get in touch →
+            Say hello →
           </a>
         </motion.div>
       </motion.div>
