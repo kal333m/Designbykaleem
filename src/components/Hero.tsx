@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useContactModal } from "@/components/ContactModal";
+import { DesignAnimation } from "@/components/DesignAnimation";
 
 const container = {
   hidden: {},
@@ -47,7 +48,7 @@ export function Hero() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="max-w-6xl mx-auto w-full pt-16"
+        className="max-w-6xl mx-auto w-full pt-16 grid lg:grid-cols-2 gap-12 items-center"
       >
         <div className="max-w-2xl">
         <motion.div variants={item} className="mb-6">
@@ -97,6 +98,10 @@ export function Hero() {
           .
         </motion.p>
         </div>
+
+        <motion.div variants={item}>
+          <DesignAnimation />
+        </motion.div>
       </motion.div>
 
       <motion.div
