@@ -30,6 +30,14 @@ export function ProjectCard({ project }: { project: Project }) {
             <span className="text-xs font-medium text-muted rounded-[var(--radius-pill)] border border-border px-2.5 py-0.5">
               {project.platform}
             </span>
+            {project.domains.map((d) => (
+              <span
+                key={d}
+                className="text-xs font-medium text-accent rounded-[var(--radius-pill)] border border-border px-2.5 py-0.5"
+              >
+                {d}
+              </span>
+            ))}
           </div>
           <h3 className="text-lg font-semibold tracking-tight">{project.title}</h3>
           <p className="text-sm text-muted mt-1">{project.tagline}</p>

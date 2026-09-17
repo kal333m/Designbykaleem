@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import { useContactModal } from "@/components/ContactModal";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const openContact = useContactModal();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.7);
@@ -27,15 +29,15 @@ export function Nav() {
         >
           Kaleem Ali
         </a>
-        <a
-          href="#contact"
+        <button
+          onClick={openContact}
           className={clsx(
-            "text-sm font-medium text-foreground visited:text-foreground hover:text-accent transition-all duration-300",
+            "text-sm font-medium text-foreground hover:text-accent transition-all duration-300",
             scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
           )}
         >
           Say hello
-        </a>
+        </button>
       </div>
     </header>
   );

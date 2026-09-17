@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useContactModal } from "@/components/ContactModal";
 
 const container = {
   hidden: {},
@@ -19,6 +20,8 @@ const item = {
 };
 
 export function Hero() {
+  const openContact = useContactModal();
+
   return (
     <section
       id="top"
@@ -84,12 +87,12 @@ export function Hero() {
             the work
           </a>
           , or just{" "}
-          <a
-            href="#contact"
-            className="font-medium text-foreground visited:text-foreground underline decoration-border decoration-1 underline-offset-4 hover:decoration-accent hover:text-accent transition-colors"
+          <button
+            onClick={openContact}
+            className="font-medium text-foreground underline decoration-border decoration-1 underline-offset-4 hover:decoration-accent hover:text-accent transition-colors"
           >
             say hello
-          </a>
+          </button>
           .
         </motion.p>
       </motion.div>
