@@ -28,33 +28,43 @@ export function DesignAnimation() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col items-center gap-4 w-full"
+              className="flex items-center justify-center w-full"
             >
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.3 }}
-                className="flex items-center gap-2 text-[10px] text-muted font-mono"
-              >
-                <span className="h-px w-8 border-t border-dashed border-accent/50" />
-                48px
-                <span className="h-px w-8 border-t border-dashed border-accent/50" />
-              </motion.div>
+              <div className="relative">
+                <div className="flex h-12 w-40 items-center justify-center rounded-full bg-accent text-white text-sm font-medium">
+                  Get Started
+                </div>
 
-              <span className="rounded-full bg-accent text-white text-sm font-medium px-7 py-3">
-                Get Started
-              </span>
+                {/* width annotation */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 0.3 }}
+                  className="absolute left-0 right-0 top-full mt-2.5 flex flex-col items-center gap-1"
+                >
+                  <div className="flex w-full items-center">
+                    <span className="h-1.5 w-px bg-accent/50" />
+                    <span className="flex-1 border-t border-dashed border-accent/50" />
+                    <span className="h-1.5 w-px bg-accent/50" />
+                  </div>
+                  <span className="text-[9px] text-muted font-mono">160px</span>
+                </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.3 }}
-                className="flex items-center gap-2 text-[10px] text-muted font-mono"
-              >
-                <span className="h-px w-8 border-t border-dashed border-accent/50" />
-                16px
-                <span className="h-px w-8 border-t border-dashed border-accent/50" />
-              </motion.div>
+                {/* height annotation */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 0.3 }}
+                  className="absolute top-0 bottom-0 left-full ml-3 flex items-center gap-1.5"
+                >
+                  <div className="flex h-full flex-col items-center">
+                    <span className="h-px w-1.5 bg-accent/50" />
+                    <span className="flex-1 border-l border-dashed border-accent/50" />
+                    <span className="h-px w-1.5 bg-accent/50" />
+                  </div>
+                  <span className="text-[9px] text-muted font-mono">48px</span>
+                </motion.div>
+              </div>
             </motion.div>
           ) : (
             <motion.div
