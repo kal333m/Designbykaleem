@@ -1,7 +1,7 @@
 export type ClientType = "B2B" | "B2C";
 export type Platform = "Web" | "Mobile";
 
-// Starter set based on your own project mix — add/remove freely as real projects come in.
+// Starter set based on your own project mix, add or remove freely as real projects come in.
 export const domainOptions = [
   "AI",
   "Enterprise",
@@ -58,7 +58,7 @@ export type Project = {
   };
   coverImage?: string;
 
-  // Case study body — same structure for every project. Every field past
+  // Case study body: same structure for every project. Every field past
   // this point is optional so a thin case study can render gracefully with
   // just the core sections while a fuller one can show its full thinking.
   overview: string;

@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kaleem — Portfolio",
+  title: "Kaleem Ali · Portfolio",
   description: "Product design portfolio, filterable by client type and platform.",
 };
 
