@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Project } from "@/lib/projects";
 
@@ -16,12 +17,24 @@ export function ProjectCard({ project }: { project: Project }) {
         whileHover={{ y: -4 }}
         className="group overflow-hidden rounded-[var(--radius-card)] bg-surface border border-border"
       >
-        <div
-          className="aspect-[4/3] w-full transition-transform duration-500 group-hover:scale-[1.03]"
-          style={{
-            background: `linear-gradient(135deg, ${project.cover.from}, ${project.cover.to})`,
-          }}
-        />
+        {project.coverImage ? (
+          <div className="aspect-[4/3] w-full overflow-hidden">
+            <Image
+              src={project.coverImage}
+              alt={project.title}
+              width={800}
+              height={600}
+              className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+          </div>
+        ) : (
+          <div
+            className="aspect-[4/3] w-full transition-transform duration-500 group-hover:scale-[1.03]"
+            style={{
+              background: `linear-gradient(135deg, ${project.cover.from}, ${project.cover.to})`,
+            }}
+          />
+        )}
         <div className="p-6">
           <div className="flex items-center gap-2 mb-3">
             <span className="text-xs font-medium text-muted rounded-[var(--radius-pill)] border border-border px-2.5 py-0.5">

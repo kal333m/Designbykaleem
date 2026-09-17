@@ -16,16 +16,19 @@ export function ImpactChart({ title, unit, illustrative, points }: ImpactChartDa
           </span>
         )}
       </div>
-      <div className="flex items-end gap-6 h-40">
+
+      <div className="flex gap-6 mb-2">
         {points.map((p) => (
-          <div
-            key={p.label}
-            className="flex-1 flex flex-col items-center gap-2 h-full justify-end"
-          >
-            <span className="text-xs text-muted font-mono">
-              {p.value}
-              {unit}
-            </span>
+          <span key={p.label} className="flex-1 text-center text-xs text-muted font-mono">
+            {p.value}
+            {unit}
+          </span>
+        ))}
+      </div>
+
+      <div className="flex gap-6 h-40">
+        {points.map((p) => (
+          <div key={p.label} className="flex-1 h-full flex flex-col justify-end">
             <motion.div
               initial={{ height: 0 }}
               whileInView={{ height: `${(p.value / max) * 100}%` }}
@@ -33,8 +36,15 @@ export function ImpactChart({ title, unit, illustrative, points }: ImpactChartDa
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="w-full rounded-t-lg bg-accent"
             />
-            <span className="text-[11px] text-muted">{p.label}</span>
           </div>
+        ))}
+      </div>
+
+      <div className="flex gap-6 mt-2">
+        {points.map((p) => (
+          <span key={p.label} className="flex-1 text-center text-[11px] text-muted">
+            {p.label}
+          </span>
         ))}
       </div>
     </div>

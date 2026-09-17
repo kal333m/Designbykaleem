@@ -1,7 +1,14 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { projects } from "@/lib/projects";
 import { ImpactChart } from "@/components/ImpactChart";
+import { ProblemDiagnosis } from "@/components/ProblemDiagnosis";
+import { ResearchInsights } from "@/components/ResearchInsights";
+import { FlowDiagram } from "@/components/FlowDiagram";
+import { ProcessSteps } from "@/components/ProcessSteps";
+import { ScreenBlock } from "@/components/ScreenBlock";
+import { ScaleStats } from "@/components/ScaleStats";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Footer } from "@/components/Footer";
 
@@ -9,11 +16,17 @@ export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-function Section({ heading, text }: { heading: string; text: string }) {
+function Section({
+  heading,
+  children,
+}: {
+  heading: string;
+  children: React.ReactNode;
+}) {
   return (
-    <div>
-      <h2 className="text-sm uppercase tracking-wide text-muted mb-3">{heading}</h2>
-      <p className="text-base leading-relaxed">{text}</p>
+    <div className="flex flex-col gap-5">
+      <h2 className="text-sm uppercase tracking-wide text-muted">{heading}</h2>
+      {children}
     </div>
   );
 }
@@ -31,7 +44,7 @@ export default async function ProjectPage({
 
   return (
     <main className="pt-16">
-      <div className="max-w-4xl mx-auto px-6 sm:px-10 py-16 sm:py-20 flex flex-col gap-14">
+      <div className="max-w-4xl mx-auto px-6 sm:px-10 py-16 sm:py-20 flex flex-col gap-16">
         <Link href="/" className="text-sm text-muted hover:text-foreground transition-colors">
           ← Back
         </Link>
@@ -60,33 +73,76 @@ export default async function ProjectPage({
           <p className="text-lg text-muted">{project.tagline}</p>
         </header>
 
-        <div
-          className="aspect-[16/9] w-full rounded-[var(--radius-card)]"
-          style={{
-            background: `linear-gradient(135deg, ${project.cover.from}, ${project.cover.to})`,
-          }}
-        />
+        {project.coverImage ? (
+          <div className="rounded-[var(--radius-card)] border border-border overflow-hidden">
+            <Image
+              src={project.coverImage}
+              alt={project.title}
+              width={1600}
+              height={900}
+              className="w-full h-auto"
+              priority
+            />
+          </div>
+        ) : (
+          <div
+            className="aspect-[16/9] w-full rounded-[var(--radius-card)]"
+            style={{
+              background: `linear-gradient(135deg, ${project.cover.from}, ${project.cover.to})`,
+            }}
+          />
+        )}
 
         <section className="grid sm:grid-cols-3 gap-10">
-          <div className="sm:col-span-2 flex flex-col gap-14">
-            <Section heading="Overview" text={project.overview} />
-            <Section heading="Business Context" text={project.businessContext} />
-            <Section heading="Problem Statement" text={project.problemStatement} />
-            <Section heading="Process" text={project.process} />
-            <Section heading="Solution" text={project.solution} />
+          <div className="sm:col-span-2 flex flex-col gap-16">
+            <Section heading="Overview">
+              <p className="text-base leading-relaxed">{project.overview}</p>
+            </Section>
 
-            <div className="flex flex-col gap-6">
-              <div>
-                <h2 className="text-sm uppercase tracking-wide text-muted mb-3">Impact</h2>
-                <p className="text-base leading-relaxed">{project.outcome}</p>
-              </div>
+            <Section heading="Business Context">
+              <p className="text-base leading-relaxed">{project.businessContext}</p>
+            </Section>
+
+            <Section heading="Problem Statement">
+              <p className="text-base leading-relaxed">{project.problemStatement}</p>
+              {project.problemDiagnosis && (
+                <ProblemDiagnosis diagnosis={project.problemDiagnosis} />
+              )}
+            </Section>
+
+            <Section heading="Process">
+              <p className="text-base leading-relaxed">{project.process}</p>
+              {project.researchInsights && (
+                <ResearchInsights findings={project.researchInsights} />
+              )}
+              {project.currentFlow && <FlowDiagram {...project.currentFlow} />}
+              {project.processSteps && <ProcessSteps steps={project.processSteps} />}
+            </Section>
+
+            <Section heading="Solution">
+              <p className="text-base leading-relaxed">{project.solution}</p>
+              {project.proposedFlow && <FlowDiagram {...project.proposedFlow} />}
+              {project.screens && (
+                <div className="flex flex-col gap-14 mt-2">
+                  {project.screens.map((screen) => (
+                    <ScreenBlock key={screen.title} {...screen} />
+                  ))}
+                </div>
+              )}
+            </Section>
+
+            <Section heading="Impact">
+              <p className="text-base leading-relaxed">{project.outcome}</p>
+              {project.scaleStats && <ScaleStats stats={project.scaleStats} />}
               {project.metrics?.map((chart) => (
                 <ImpactChart key={chart.title} {...chart} />
               ))}
-            </div>
+            </Section>
 
             {project.reflection && (
-              <Section heading="Reflection" text={project.reflection} />
+              <Section heading="Reflection">
+                <p className="text-base leading-relaxed">{project.reflection}</p>
+              </Section>
             )}
           </div>
 
