@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { useContactModal } from "@/components/ContactModal";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,7 +23,8 @@ export function Nav() {
         scrolled && "backdrop-blur-md bg-background/70 border-b border-border"
       )}
     >
-      <div className="max-w-6xl mx-auto px-6 sm:px-10 h-16 flex items-center justify-end">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 h-16 flex items-center justify-between">
+        <ThemeToggle />
         <button
           onClick={openContact}
           className={clsx(
