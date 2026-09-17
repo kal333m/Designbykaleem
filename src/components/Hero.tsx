@@ -49,7 +49,7 @@ export function Hero() {
         <motion.div variants={item} className="mb-6">
           <span className="inline-flex items-center gap-2 rounded-[var(--radius-pill)] border border-border bg-surface/80 px-3.5 py-1.5 text-xs font-medium text-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-            Available for new projects
+            Available
           </span>
         </motion.div>
 
@@ -57,7 +57,7 @@ export function Hero() {
           variants={item}
           className="text-5xl sm:text-7xl font-semibold tracking-tight leading-[1.05]"
         >
-          Kaleem
+          Kaleem Ali
         </motion.h1>
         <motion.p
           variants={item}

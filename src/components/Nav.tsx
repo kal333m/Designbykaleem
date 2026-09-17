@@ -23,9 +23,9 @@ export function Nav() {
       <div className="max-w-6xl mx-auto px-6 sm:px-10 h-16 flex items-center justify-between">
         <a
           href="#top"
-          className="flex h-8 w-8 items-center justify-center rounded-xl bg-foreground text-background text-sm font-semibold"
+          className="text-sm font-semibold tracking-tight text-foreground visited:text-foreground hover:text-accent transition-colors"
         >
-          K
+          Kaleem Ali
         </a>
         <a
           href="#contact"
