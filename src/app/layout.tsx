@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { ContactModalProvider } from "@/components/ContactModal";
+import { Nav } from "@/components/Nav";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,7 +31,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Script id="theme-init" strategy="beforeInteractive">
           {`try{if(localStorage.getItem('theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}`}
         </Script>
-        <ContactModalProvider>{children}</ContactModalProvider>
+        <ContactModalProvider>
+          <Nav />
+          {children}
+        </ContactModalProvider>
       </body>
     </html>
   );
