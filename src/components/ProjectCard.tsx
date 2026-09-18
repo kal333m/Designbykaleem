@@ -3,8 +3,15 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Project } from "@/lib/projects";
+import { KanbanGlyph } from "@/components/ProjectGlyphs";
+
+const glyphs = {
+  kanban: KanbanGlyph,
+};
 
 export function ProjectCard({ project }: { project: Project }) {
+  const Glyph = project.thumbnailGlyph ? glyphs[project.thumbnailGlyph] : null;
+
   return (
     <Link href={`/projects/${project.slug}`} className="block">
       <motion.div
@@ -17,11 +24,13 @@ export function ProjectCard({ project }: { project: Project }) {
         className="group overflow-hidden rounded-[var(--radius-card)] bg-surface border border-border"
       >
         <div
-          className="aspect-[4/3] w-full transition-transform duration-500 group-hover:scale-[1.03]"
+          className="relative aspect-[4/3] w-full overflow-hidden transition-transform duration-500 group-hover:scale-[1.03]"
           style={{
             background: `linear-gradient(135deg, ${project.cover.from}, ${project.cover.to})`,
           }}
-        />
+        >
+          {Glyph && <Glyph />}
+        </div>
         <div className="p-6">
           <div className="flex items-center gap-2 mb-3">
             <span className="text-xs font-medium text-muted rounded-[var(--radius-pill)] border border-border px-2.5 py-0.5">

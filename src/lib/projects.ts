@@ -66,6 +66,7 @@ export type Project = {
     to: string;
   };
   coverImage?: string;
+  thumbnailGlyph?: "kanban";
 
   // Case study body: same structure for every project. Every field past
   // this point is optional so a thin case study can render gracefully with
@@ -104,6 +105,7 @@ export const projects: Project[] = [
     timeframe: "22 Dec 2025 to 4 Feb 2026 (6 weeks)",
     tools: ["Figma", "Claude", "Jira"],
     cover: { from: "#f97316", to: "#7c2d12" },
+    thumbnailGlyph: "kanban",
     coverImage: "/projects/b2b-bid-management/hero-dashboard.webp",
 
     overview:
