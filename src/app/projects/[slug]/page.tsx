@@ -8,6 +8,7 @@ import { ResearchInsights } from "@/components/ResearchInsights";
 import { FlowDiagram } from "@/components/FlowDiagram";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import { ScreenBlock } from "@/components/ScreenBlock";
+import { DistributionChart } from "@/components/DistributionChart";
 import { ScaleStats } from "@/components/ScaleStats";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Footer } from "@/components/Footer";
@@ -126,6 +127,13 @@ export default async function ProjectPage({
                 <div className="flex flex-col gap-14 mt-2">
                   {project.screens.map((screen) => (
                     <ScreenBlock key={screen.title} {...screen} />
+                  ))}
+                </div>
+              )}
+              {project.distributions && (
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {project.distributions.map((d) => (
+                    <DistributionChart key={d.title} {...d} />
                   ))}
                 </div>
               )}

@@ -16,7 +16,16 @@ export type ImpactChart = {
   title: string;
   unit?: string;
   illustrative?: boolean;
+  source?: string;
   points: ChartPoint[];
+};
+
+export type DistributionItem = { label: string; value: number; detail?: string };
+export type Distribution = {
+  title: string;
+  unit?: string;
+  source?: string;
+  items: DistributionItem[];
 };
 
 // The structured "how / what / when / why" breakdown of a problem.
@@ -72,6 +81,7 @@ export type Project = {
   solution: string;
   proposedFlow?: Flow;
   screens?: ScreenBlock[];
+  distributions?: Distribution[];
   outcome: string;
   metrics?: ImpactChart[];
   scaleStats?: StatItem[];
@@ -93,7 +103,7 @@ export const projects: Project[] = [
     team: "1 Product Designer, 1 Product Manager, 1 Front-End Engineer, 1 Backend Engineer",
     timeframe: "22 Dec 2025 to 4 Feb 2026 (6 weeks)",
     tools: ["Figma", "Claude", "Jira"],
-    cover: { from: "#1e293b", to: "#334155" },
+    cover: { from: "#f97316", to: "#7c2d12" },
     coverImage: "/projects/b2b-bid-management/hero-dashboard.webp",
 
     overview:
@@ -195,6 +205,27 @@ export const projects: Project[] = [
         images: ["/projects/b2b-bid-management/stakeholder-summary.webp"],
       },
     ],
+    distributions: [
+      {
+        title: "Active proposals by stage",
+        source: "Mixpanel",
+        items: [
+          { label: "Plan & Draft", value: 183, detail: "4.7B DKK in this stage" },
+          { label: "Manage Requirements", value: 93, detail: "2.4M DKK in this stage" },
+          { label: "Bid Assessment", value: 43, detail: "526.2K DKK in this stage" },
+          { label: "Review & Finalize", value: 41 },
+        ],
+      },
+      {
+        title: "System tag coverage",
+        source: "Mixpanel",
+        items: [
+          { label: "Plan & Draft", value: 1108, detail: "Requires a written response" },
+          { label: "Compliance", value: 955, detail: "Yes or no confirmation only" },
+          { label: "Evidence", value: 105, detail: "Document upload needed" },
+        ],
+      },
+    ],
 
     outcome:
       "I redesigned four interconnected systems, the Kanban pipeline, requirement tagging, compliance matrix, and template library, to work as one coherent flow. Every decision was grounded in how bid teams actually think: by proposal health, not by feature. Tags moved inline. Templates moved to the surface. The Kanban board started telling a story, and the compliance matrix became something people actually used.",
@@ -202,6 +233,7 @@ export const projects: Project[] = [
       {
         title: "Enterprise NPS",
         illustrative: false,
+        source: "Feedback",
         points: [
           { label: "Before", value: 6.1 },
           { label: "After", value: 8.7 },
@@ -211,6 +243,7 @@ export const projects: Project[] = [
         title: "Compliance Matrix Usage",
         unit: "%",
         illustrative: false,
+        source: "Mixpanel",
         points: [
           { label: "Before", value: 56 },
           { label: "After", value: 82 },
@@ -220,6 +253,7 @@ export const projects: Project[] = [
         title: "Task Drop-Off Rate",
         unit: "%",
         illustrative: false,
+        source: "Mixpanel",
         points: [
           { label: "Before", value: 61 },
           { label: "After", value: 22 },

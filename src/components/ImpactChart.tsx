@@ -3,18 +3,25 @@
 import { motion } from "framer-motion";
 import type { ImpactChart as ImpactChartData } from "@/lib/projects";
 
-export function ImpactChart({ title, unit, illustrative, points }: ImpactChartData) {
+export function ImpactChart({ title, unit, illustrative, source, points }: ImpactChartData) {
   const max = Math.max(...points.map((p) => p.value), 1);
 
   return (
     <div className="rounded-2xl border border-border bg-surface p-6">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-start justify-between gap-3 mb-6">
         <h3 className="text-sm font-medium">{title}</h3>
-        {illustrative && (
-          <span className="text-[10px] text-muted rounded-full border border-border px-2 py-0.5">
-            Illustrative data
-          </span>
-        )}
+        <div className="flex shrink-0 gap-2">
+          {illustrative && (
+            <span className="text-[10px] text-muted rounded-full border border-border px-2 py-0.5 whitespace-nowrap">
+              Illustrative data
+            </span>
+          )}
+          {source && (
+            <span className="text-[10px] text-muted rounded-full border border-border px-2 py-0.5 whitespace-nowrap">
+              via {source}
+            </span>
+          )}
+        </div>
       </div>
 
       <div className="flex gap-6 mb-2">
