@@ -13,14 +13,14 @@ const leftPositions = ["3%", "27.5%", "52%", "76.5%"];
 
 export function KanbanIllustration() {
   return (
-    <div className="relative w-full aspect-[16/9] rounded-[var(--radius-card)] border border-border bg-surface overflow-hidden">
+    <div className="relative w-full h-56 sm:h-64 rounded-[var(--radius-card)] border border-border bg-surface overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-9 flex items-center gap-1.5 px-4 border-b border-border z-10 bg-surface">
         <span className="h-2.5 w-2.5 rounded-full bg-border" />
         <span className="h-2.5 w-2.5 rounded-full bg-border" />
         <span className="h-2.5 w-2.5 rounded-full bg-border" />
       </div>
 
-      <div className="absolute inset-0 pt-9 p-6 flex gap-4">
+      <div className="absolute inset-0 pt-14 sm:pt-16 px-6 sm:px-8 pb-6 flex gap-4">
         {columns.map((col) => (
           <div key={col.title} className="flex-1 flex flex-col gap-2.5">
             <div className="flex items-center gap-2 mb-1">
@@ -74,7 +74,7 @@ export function KanbanIllustration() {
             times: [0, 0.15, 0.22, 0.37, 0.44, 0.59, 0.66, 0.8, 0.87, 0.88, 1],
           },
         }}
-        className="absolute top-[76px] w-[21%] rounded-lg border-2 bg-background p-2.5 shadow-sm"
+        className="absolute top-[86px] sm:top-[94px] w-[21%] rounded-lg border-2 bg-background p-2.5 shadow-sm"
         style={{ borderColor: "var(--accent)" }}
       >
         <div className="h-1.5 w-3/4 rounded-full mb-1.5" style={{ background: "var(--accent)" }} />
