@@ -12,6 +12,11 @@ import { DistributionChart } from "@/components/DistributionChart";
 import { ScaleStats } from "@/components/ScaleStats";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Footer } from "@/components/Footer";
+import { KanbanIllustration } from "@/components/KanbanIllustration";
+
+const heroIllustrations = {
+  kanban: KanbanIllustration,
+};
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -74,25 +79,37 @@ export default async function ProjectPage({
           <p className="text-lg text-muted">{project.tagline}</p>
         </header>
 
-        {project.coverImage ? (
-          <div className="rounded-[var(--radius-card)] border border-border overflow-hidden">
-            <Image
-              src={project.coverImage}
-              alt={project.title}
-              width={1600}
-              height={900}
-              className="w-full h-auto"
-              priority
+        {(() => {
+          const HeroIllustration = project.heroIllustration
+            ? heroIllustrations[project.heroIllustration]
+            : null;
+
+          if (HeroIllustration) return <HeroIllustration />;
+
+          if (project.coverImage) {
+            return (
+              <div className="rounded-[var(--radius-card)] border border-border overflow-hidden">
+                <Image
+                  src={project.coverImage}
+                  alt={project.title}
+                  width={1600}
+                  height={900}
+                  className="w-full h-auto"
+                  priority
+                />
+              </div>
+            );
+          }
+
+          return (
+            <div
+              className="aspect-[16/9] w-full rounded-[var(--radius-card)]"
+              style={{
+                background: `linear-gradient(135deg, ${project.cover.from}, ${project.cover.to})`,
+              }}
             />
-          </div>
-        ) : (
-          <div
-            className="aspect-[16/9] w-full rounded-[var(--radius-card)]"
-            style={{
-              background: `linear-gradient(135deg, ${project.cover.from}, ${project.cover.to})`,
-            }}
-          />
-        )}
+          );
+        })()}
 
         <section className="grid sm:grid-cols-3 gap-10">
           <div className="sm:col-span-2 flex flex-col gap-16">

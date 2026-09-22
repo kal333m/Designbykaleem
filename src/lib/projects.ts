@@ -67,6 +67,7 @@ export type Project = {
   };
   coverImage?: string;
   thumbnailGlyph?: "kanban";
+  heroIllustration?: "kanban";
 
   // Case study body: same structure for every project. Every field past
   // this point is optional so a thin case study can render gracefully with
@@ -106,6 +107,7 @@ export const projects: Project[] = [
     tools: ["Figma", "Claude", "Jira"],
     cover: { from: "#f97316", to: "#7c2d12" },
     thumbnailGlyph: "kanban",
+    heroIllustration: "kanban",
     coverImage: "/projects/b2b-bid-management/hero-dashboard.webp",
 
     overview:
