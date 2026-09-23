@@ -17,6 +17,7 @@ import { AtlasIllustration } from "@/components/AtlasIllustration";
 import { ProcurementIllustration } from "@/components/ProcurementIllustration";
 import { GuardianIllustration } from "@/components/GuardianIllustration";
 import { JourneyIllustration } from "@/components/JourneyIllustration";
+import { PaletteIllustration } from "@/components/PaletteIllustration";
 
 const heroIllustrations = {
   kanban: KanbanIllustration,
@@ -24,6 +25,7 @@ const heroIllustrations = {
   procure: ProcurementIllustration,
   guardian: GuardianIllustration,
   journey: JourneyIllustration,
+  palette: PaletteIllustration,
 };
 
 export function generateStaticParams() {

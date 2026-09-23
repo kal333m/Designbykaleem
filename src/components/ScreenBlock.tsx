@@ -1,14 +1,17 @@
 import Image from "next/image";
 import type { ScreenBlock as ScreenBlockData } from "@/lib/projects";
 import { RoleArchitecture } from "@/components/RoleArchitecture";
+import { ResponsiveShowcase } from "@/components/ResponsiveShowcase";
 
 const diagrams = {
   roleArchitecture: RoleArchitecture,
+  responsive: ResponsiveShowcase,
 };
 
-export function ScreenBlock({ title, goal, decisions, images, diagram, layout }: ScreenBlockData) {
+export function ScreenBlock({ title, goal, decisions, images, imageLabels, diagram, layout }: ScreenBlockData) {
   const Diagram = diagram ? diagrams[diagram] : null;
   const isPhone = layout === "phone";
+  const isCompare = layout === "compare";
 
   return (
     <div className="flex flex-col gap-5">
@@ -21,25 +24,31 @@ export function ScreenBlock({ title, goal, decisions, images, diagram, layout }:
           className={
             isPhone
               ? "flex flex-wrap justify-center gap-4"
-              : "flex flex-col gap-4"
+              : isCompare
+                ? "grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
+                : "flex flex-col gap-4"
           }
         >
-          {images.map((src) => (
-            <div
-              key={src}
-              className={
-                isPhone
-                  ? "w-full max-w-[280px] rounded-2xl border border-border overflow-hidden bg-surface"
-                  : "rounded-2xl border border-border overflow-hidden bg-surface"
-              }
-            >
-              <Image
-                src={src}
-                alt={title}
-                width={isPhone ? 900 : 1600}
-                height={isPhone ? 1954 : 900}
-                className="w-full h-auto"
-              />
+          {images.map((src, i) => (
+            <div key={src} className="flex flex-col gap-2">
+              <div
+                className={
+                  isPhone
+                    ? "w-full max-w-[280px] rounded-2xl border border-border overflow-hidden bg-surface"
+                    : "rounded-2xl border border-border overflow-hidden bg-surface"
+                }
+              >
+                <Image
+                  src={src}
+                  alt={title}
+                  width={isPhone ? 900 : 1600}
+                  height={isPhone ? 1954 : 900}
+                  className="w-full h-auto"
+                />
+              </div>
+              {imageLabels?.[i] && (
+                <p className="text-xs text-muted text-center">{imageLabels[i]}</p>
+              )}
             </div>
           ))}
         </div>

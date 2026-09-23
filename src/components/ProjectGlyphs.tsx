@@ -127,6 +127,27 @@ export function GuardianGlyph() {
   );
 }
 
+// A grid of colour swatches, standing in for a catalog browsing tool.
+export function PaletteGlyph() {
+  return (
+    <svg
+      viewBox="0 0 200 150"
+      fill="none"
+      className="absolute inset-0 h-full w-full"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <g opacity="0.9">
+        <rect x="38" y="38" width="38" height="30" rx="5" fill="white" fillOpacity="0.95" />
+        <rect x="82" y="38" width="38" height="30" rx="5" fill="white" fillOpacity="0.65" />
+        <rect x="126" y="38" width="38" height="30" rx="5" fill="white" fillOpacity="0.35" />
+        <rect x="38" y="76" width="38" height="30" rx="5" fill="white" fillOpacity="0.35" />
+        <rect x="82" y="76" width="38" height="30" rx="5" stroke="white" strokeWidth="2.5" />
+        <rect x="126" y="76" width="38" height="30" rx="5" fill="white" fillOpacity="0.65" />
+      </g>
+    </svg>
+  );
+}
+
 // A zigzag waypoint path with a flag at the end, standing in for a
 // gamified, milestone-driven journey.
 export function JourneyGlyph() {

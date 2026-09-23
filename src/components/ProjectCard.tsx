@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Project } from "@/lib/projects";
-import { KanbanGlyph, AtlasGlyph, ProcureGlyph, GuardianGlyph, JourneyGlyph } from "@/components/ProjectGlyphs";
+import { KanbanGlyph, AtlasGlyph, ProcureGlyph, GuardianGlyph, JourneyGlyph, PaletteGlyph } from "@/components/ProjectGlyphs";
 
 const glyphs = {
   kanban: KanbanGlyph,
@@ -11,6 +11,7 @@ const glyphs = {
   procure: ProcureGlyph,
   guardian: GuardianGlyph,
   journey: JourneyGlyph,
+  palette: PaletteGlyph,
 };
 
 export function ProjectCard({ project }: { project: Project }) {

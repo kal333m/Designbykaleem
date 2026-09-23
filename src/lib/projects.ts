@@ -8,6 +8,7 @@ export const domainOptions = [
   "Cybersecurity",
   "Fintech",
   "Education",
+  "Retail",
 ] as const;
 export type Domain = (typeof domainOptions)[number];
 
@@ -46,8 +47,9 @@ export type ScreenBlock = {
   goal: string;
   decisions: string[];
   images: string[];
-  diagram?: "roleArchitecture";
-  layout?: "phone";
+  imageLabels?: string[];
+  diagram?: "roleArchitecture" | "responsive";
+  layout?: "phone" | "compare";
 };
 
 export type StatItem = { label: string; value: string };
@@ -69,8 +71,8 @@ export type Project = {
     to: string;
   };
   coverImage?: string;
-  thumbnailGlyph?: "kanban" | "atlas" | "procure" | "guardian" | "journey";
-  heroIllustration?: "kanban" | "atlas" | "procure" | "guardian" | "journey";
+  thumbnailGlyph?: "kanban" | "atlas" | "procure" | "guardian" | "journey" | "palette";
+  heroIllustration?: "kanban" | "atlas" | "procure" | "guardian" | "journey" | "palette";
 
   // Case study body: same structure for every project. Every field past
   // this point is optional so a thin case study can render gracefully with
@@ -972,6 +974,136 @@ export const projects: Project[] = [
     ],
     reflection:
       "The insight that shaped everything here was that students don't disengage because the process is hard, they disengage because it goes quiet. Nudges, live tracking, community, and a countdown widget are four different features, but they're all solving the same problem: giving a student a reason to open the app on the days nothing is officially due. If I extended this, the next step would be instrumenting actual engagement and retention, so the modeled estimate here could be replaced with something measured.",
+  },
+  {
+    slug: "arrcoat-colour-explorer",
+    title: "Arrcoat: Colour & Finish Explorer",
+    tagline:
+      "Turning a 200+ colour catalog spread across three different categorization schemes into one browsing tool that works the same on a showroom desktop and a phone on a site visit.",
+    clientType: "B2C",
+    platform: "Web",
+    domains: ["Retail"],
+    year: "2024",
+    role: "Product Designer",
+    team: "Solo project, design and front-end build",
+    timeframe: "2024, full site design and build",
+    tools: ["Figma"],
+    cover: { from: "#d9a441", to: "#241a0d" },
+    thumbnailGlyph: "palette",
+    heroIllustration: "palette",
+    liveUrl: "https://www.arrcoat.com/colours/",
+
+    overview:
+      "Arrcoat Surface makes eco-friendly lime plaster and surface finishes, sold across three product lines with over 200 colours between them. I designed and built their site end to end, and the hardest problem in it was the colour catalog itself: three product lines, three genuinely different ways of organising colour, and roughly ten separate finish products that each colour needed to connect to. I designed a single browsing tool that respects all three structures at once, and works the same on a desktop at a showroom as it does on a phone at a site visit.",
+
+    businessContext:
+      "For a surface-finish brand, colour and texture are the entire purchase decision, and most of that decision has always happened by touching a physical swatch in a showroom. Moving that browsing experience online at this scale, three product lines, over 200 colours, up to ten finish variations each, risked becoming either an overwhelming wall of colour or an oversimplified filter that lost the nuance real customers, homeowners and architects, actually needed.",
+
+    problemStatement:
+      "Arrcoat's three product lines each organise colour in a genuinely different way. Marbleised Lime Plaster's 72 colours group by literal hue family (Beige, Greys, Creams, Brown, Blues & Greens). Versatile Lime Plaster's 72 colours use seasonal colour-analysis palettes (Cool Summer, Soft Autumn, Light Spring, Dark Spring, Dark Winter, Dark Autumn), a convention borrowed from personal styling, not construction materials. Pearl's 65 colours have no categorisation at all, just sequential naming. On top of that, every one of those 209 colours only ships in a specific subset of Arrcoat's roughly ten finish products, so a colour choice and a finish choice always had to be made together, not as two separate lookups.",
+    problemDiagnosis: {
+      how: "Each product line already had its own real categorisation logic, hue families, seasonal palettes, or none at all, and every colour also needed to connect to whichever finish products actually carry it.",
+      what: "A single filter system couldn't serve three different mental models at once without flattening two of them into a structure that didn't actually belong to them.",
+      when: "The catalog mattered most away from a desk, architects and homeowners comparing finishes on a phone during a site visit or a trade event, not just browsing from a chair.",
+      why: "For a surface-finish brand, the colour catalog is effectively the storefront. A catalog that's confusing to browse is a catalog that costs sales, directly.",
+    },
+
+    process:
+      "Instead of designing one filter system and forcing all three product lines to fit it, I worked from how Arrcoat's own team already organised each line's colours, and translated that structure directly into the browsing experience: one tab per product line, each rendering its native categories instead of a shared one.",
+    researchInsights: [
+      "Marbleised Lime Plaster's colours already had a real, working hue-family grouping. Reusing it directly meant customers never had to learn a system Arrcoat hadn't already validated in its own swatch books.",
+      "Versatile Lime Plaster's seasonal palette naming is a styling convention, not a construction one, so the category headings needed to read clearly as palettes on their own, with no extra explanation the format doesn't need.",
+      "Pearl's 65 shades had no natural grouping. Forcing categories onto it would have meant inventing structure that didn't exist, so it stays a flat, browsable list instead.",
+      "Colour and finish are chosen together, not separately, so every swatch detail view needed to show exactly which finish products that colour is actually available in, right where the colour itself is being decided.",
+      "A meaningful share of real usage happens in the field, on a phone, comparing finishes on-site rather than at a desk, so the layout needed to hold up one-handed, not just at a comfortable desktop width.",
+    ],
+    currentFlow: {
+      title: "How colour was chosen before",
+      steps: [
+        { label: "Flip through a printed swatch book or PDF", detail: "One product line at a time, with no way to search or compare" },
+        { label: "Call or visit the showroom", detail: "To confirm which finish products a specific colour actually ships in" },
+        { label: "See the real texture only in person", detail: "No way to preview how a colour looks across different finishes remotely" },
+      ],
+    },
+    processSteps: ["Audit", "Structure", "Design", "Build"],
+
+    solution:
+      "The explorer is three tabs, one per product line, and each tab renders that line's own real category structure instead of one filter system stretched across all three: hue families for Marbleised, seasonal palettes for Versatile, a flat list for Pearl. Tapping any swatch opens a detail view that pairs the actual texture photo with a 'Products Available' list of the specific finishes that colour ships in, and picking a different finish re-renders the swatch photo itself, so customers see the real texture difference, not just a label. Add to Cart sits right there, so choosing a colour and a finish ends in one action. The whole thing was built responsively from the start, collapsing to a two-column grid and a stacked modal on mobile, since a real share of the actual use happens on-site, on a phone.",
+    proposedFlow: {
+      title: "What I designed instead",
+      steps: [
+        { label: "Pick a product line", detail: "Each tab keeps that line's own real category structure, not one forced system" },
+        { label: "Browse by category, or scan the flat list", detail: "Hue families, seasonal palettes, or Pearl's flat, generic list, whichever the line actually uses" },
+        { label: "Open a swatch to see it by finish", detail: "The texture photo itself updates for each finish product the colour ships in" },
+        { label: "Add straight to cart", detail: "Colour and finish are chosen together, in one action" },
+      ],
+    },
+    screens: [
+      {
+        title: "One Shell, Two Different Categorisation Logics",
+        goal: "Let Marbleised and Versatile each browse using their own real category system, without customers noticing they're using two different structures.",
+        decisions: [
+          "Marbleised keeps its literal hue-family grouping (Beige, Greys, Creams, Brown, Blues & Greens), reusing a structure Arrcoat's own team had already validated instead of inventing a new one.",
+          "Versatile's seasonal palette names (Cool Summer, Soft Autumn) are unusual for a construction-materials catalog, so they're presented as plain section headings, with no extra explanation the format doesn't need.",
+          "Switching product-line tabs is instant and stateless, so moving between two different categorisation logics never feels like leaving one tool and entering another.",
+        ],
+        images: [
+          "/projects/arrcoat-colour-explorer/marbleised-beige.webp",
+          "/projects/arrcoat-colour-explorer/versatile-seasons.webp",
+        ],
+        imageLabels: ["Marbleised Lime Plaster, hue families", "Versatile Lime Plaster, seasonal palettes"],
+        layout: "compare",
+      },
+      {
+        title: "The Swatch Itself Changes With the Finish",
+        goal: "Show customers the real texture difference between finishes on the same colour, not just a text label.",
+        decisions: [
+          "Selecting a different finish in 'Products Available' re-renders the swatch photo to that finish's actual texture, so the visual difference between, say, Concrete and Travertine is seen directly, not described.",
+          "Add to Cart stays anchored to the swatch view itself, so colour and finish are decided and actioned together instead of a separate product lookup afterward.",
+        ],
+        images: [
+          "/projects/arrcoat-colour-explorer/swatch-concrete.webp",
+          "/projects/arrcoat-colour-explorer/swatch-travertine.webp",
+          "/projects/arrcoat-colour-explorer/swatch-smooth.webp",
+        ],
+        imageLabels: ["Concrete finish selected", "Travertine finish selected", "Smooth finish selected"],
+        layout: "compare",
+      },
+      {
+        title: "Responsive, From a Showroom Desktop to a Site-Visit Phone",
+        goal: "Keep the same browsing logic intact when the screen shrinks to one hand, since a real share of use happens on-site.",
+        decisions: [
+          "Product-line tabs stack full-width on mobile instead of compressing into a cramped inline row.",
+          "The swatch grid drops from six columns to two, keeping each swatch large enough to judge colour accurately on a small screen.",
+          "The finish-picker modal restacks from side-by-side to vertical, texture photo on top, finish list below, so it works one-thumb.",
+        ],
+        images: [],
+        diagram: "responsive",
+      },
+    ],
+    distributions: [
+      {
+        title: "Colours catalogued per product line",
+        unit: " colours",
+        source: "the live catalog at arrcoat.com",
+        items: [
+          { label: "Marbleised Lime Plaster", value: 72 },
+          { label: "Versatile Lime Plaster", value: 72 },
+          { label: "Pearl", value: 65 },
+        ],
+      },
+    ],
+
+    outcome:
+      "This shipped as part of Arrcoat's live site, and I don't have analytics access to report hard engagement numbers from it. What I can report directly is qualitative: the catalog was demoed at trade events and used by the Arrcoat team with customers in person, and the consistent feedback was that the colour and finish combinations, over 200 colours across three genuinely different structures, finally felt easy to browse instead of overwhelming. Given the scale of the catalog it replaced a printed swatch book for, that reaction was the actual goal.",
+    scaleStats: [
+      { label: "Colours catalogued", value: "209" },
+      { label: "Product lines organised", value: "3" },
+      { label: "Finish products per colour", value: "Up to 10" },
+      { label: "Platforms designed", value: "Web & Mobile" },
+    ],
+    reflection:
+      "The real problem here was never 'how do we filter 200 colours,' it was that three product lines already had three legitimate, different ways of organising colour, and the honest answer was to keep all three rather than flatten them into one system for the sake of consistency. The texture swap on the swatch view came from the same instinct: colour and finish aren't really separate decisions, so the interface shouldn't treat them as one.",
   },
   {
     slug: "project-two",
