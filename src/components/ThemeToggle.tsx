@@ -6,10 +6,13 @@ export function ThemeToggle() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
+    // Reads the attribute an inline pre-hydration script sets from localStorage,
+    // so the toggle can't be derived from props/state without a hydration mismatch.
     const current =
       document.documentElement.getAttribute("data-theme") === "light"
         ? "light"
         : "dark";
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTheme(current);
   }, []);
 

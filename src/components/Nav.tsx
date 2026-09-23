@@ -9,15 +9,13 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 export function Nav() {
   const pathname = usePathname();
   const hasHero = pathname === "/";
-  const [scrolled, setScrolled] = useState(!hasHero);
+  const [scrollPastHero, setScrollPastHero] = useState(false);
+  const scrolled = !hasHero || scrollPastHero;
   const openContact = useContactModal();
 
   useEffect(() => {
-    if (!hasHero) {
-      setScrolled(true);
-      return;
-    }
-    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.7);
+    if (!hasHero) return;
+    const onScroll = () => setScrollPastHero(window.scrollY > window.innerHeight * 0.7);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
