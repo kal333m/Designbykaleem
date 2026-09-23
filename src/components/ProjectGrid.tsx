@@ -16,7 +16,7 @@ export function ProjectGrid() {
     const query = search.trim().toLowerCase();
     return projects.filter((p) => {
       if (clientType !== "All" && p.clientType !== clientType) return false;
-      if (platform !== "All" && p.platform !== platform) return false;
+      if (platform !== "All" && !p.platform.includes(platform)) return false;
       if (domains.length > 0 && !p.domains.some((d) => domains.includes(d))) return false;
       if (query) {
         const haystack = [p.title, p.tagline, ...p.domains].join(" ").toLowerCase();

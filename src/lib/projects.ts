@@ -59,7 +59,7 @@ export type Project = {
   title: string;
   tagline: string;
   clientType: ClientType;
-  platform: Platform;
+  platform: Platform[];
   domains: Domain[];
   year: string;
   role: string;
@@ -103,7 +103,7 @@ export const projects: Project[] = [
     tagline:
       "Redesigning how bid teams navigate, tag, and act on tender requirements, from Kanban to compliance matrix, end to end.",
     clientType: "B2B",
-    platform: "Web",
+    platform: ["Web"],
     domains: ["AI", "Enterprise"],
     year: "2026",
     role: "Senior Product Designer",
@@ -281,7 +281,7 @@ export const projects: Project[] = [
     tagline:
       "Designing the agentic memory layer that lets Atlas act on persistent context, skills, and shared team knowledge, instead of starting cold every session.",
     clientType: "B2B",
-    platform: "Web",
+    platform: ["Web"],
     domains: ["AI", "Enterprise"],
     year: "2026",
     role: "Senior Product Designer",
@@ -459,7 +459,7 @@ export const projects: Project[] = [
     tagline:
       "Redesigning a legacy procurement ERP into role-based dashboards for finance, procurement, and vendors, cutting order processing time by 38%.",
     clientType: "B2B",
-    platform: "Web",
+    platform: ["Web"],
     domains: ["Enterprise", "Fintech"],
     year: "2025",
     role: "Product Designer",
@@ -659,7 +659,7 @@ export const projects: Project[] = [
     tagline:
       "Designing an AI that steps in before a user picks a cheaper insurance plan that quietly drops the coverage they actually need.",
     clientType: "B2C",
-    platform: "Mobile",
+    platform: ["Mobile"],
     domains: ["AI", "Fintech"],
     year: "2025",
     role: "Product Designer",
@@ -820,7 +820,7 @@ export const projects: Project[] = [
     tagline:
       "Designing a gamified, community-led hub that keeps students engaged through an 8+ month study-abroad journey instead of losing them to silence between milestones.",
     clientType: "B2C",
-    platform: "Mobile",
+    platform: ["Mobile"],
     domains: ["Education"],
     year: "2024",
     role: "Product Designer",
@@ -981,7 +981,7 @@ export const projects: Project[] = [
     tagline:
       "Turning a 200+ colour catalog spread across three different categorization schemes into one browsing tool that works the same on a showroom desktop and a phone on a site visit.",
     clientType: "B2C",
-    platform: "Web",
+    platform: ["Web", "Mobile"],
     domains: ["Retail"],
     year: "2024",
     role: "Product Designer",
@@ -1114,7 +1114,7 @@ export const projects: Project[] = [
     title: "Project Two",
     tagline: "A one-line pitch goes here.",
     clientType: "B2C",
-    platform: "Mobile",
+    platform: ["Mobile"],
     domains: ["Fintech"],
     year: "2024",
     role: "Product Designer",
@@ -1145,7 +1145,7 @@ export const projects: Project[] = [
     title: "Project Three",
     tagline: "A one-line pitch goes here.",
     clientType: "B2B",
-    platform: "Mobile",
+    platform: ["Mobile"],
     domains: ["Cybersecurity", "Enterprise"],
     year: "2023",
     role: "Product Designer",
@@ -1176,7 +1176,7 @@ export const projects: Project[] = [
     title: "Project Four",
     tagline: "A one-line pitch goes here.",
     clientType: "B2C",
-    platform: "Web",
+    platform: ["Web"],
     domains: ["AI"],
     year: "2023",
     role: "Product Designer",

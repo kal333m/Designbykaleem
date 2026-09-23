@@ -41,9 +41,14 @@ export function ProjectCard({ project }: { project: Project }) {
             <span className="text-xs font-medium text-muted rounded-[var(--radius-pill)] border border-border px-2.5 py-0.5">
               {project.clientType}
             </span>
-            <span className="text-xs font-medium text-muted rounded-[var(--radius-pill)] border border-border px-2.5 py-0.5">
-              {project.platform}
-            </span>
+            {project.platform.map((p) => (
+              <span
+                key={p}
+                className="text-xs font-medium text-muted rounded-[var(--radius-pill)] border border-border px-2.5 py-0.5"
+              >
+                {p}
+              </span>
+            ))}
             {project.domains.map((d) => (
               <span
                 key={d}
