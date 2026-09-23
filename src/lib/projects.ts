@@ -48,7 +48,7 @@ export type ScreenBlock = {
   decisions: string[];
   images: string[];
   imageLabels?: string[];
-  diagram?: "roleArchitecture" | "responsive";
+  diagram?: "roleArchitecture";
   layout?: "phone" | "compare";
 };
 
@@ -1052,7 +1052,6 @@ export const projects: Project[] = [
           "/projects/arrcoat-colour-explorer/versatile-seasons.webp",
         ],
         imageLabels: ["Marbleised Lime Plaster, hue families", "Versatile Lime Plaster, seasonal palettes"],
-        layout: "compare",
       },
       {
         title: "The Swatch Itself Changes With the Finish",
@@ -1075,10 +1074,15 @@ export const projects: Project[] = [
         decisions: [
           "Product-line tabs stack full-width on mobile instead of compressing into a cramped inline row.",
           "The swatch grid drops from six columns to two, keeping each swatch large enough to judge colour accurately on a small screen.",
-          "The finish-picker modal restacks from side-by-side to vertical, texture photo on top, finish list below, so it works one-thumb.",
+          "The finish-picker modal restacks from side-by-side to vertical, texture photo on top, finish list below, so it works one-thumb, right down to the same texture-swap behaviour as desktop.",
         ],
-        images: [],
-        diagram: "responsive",
+        images: [
+          "/projects/arrcoat-colour-explorer/mobile-browse.webp",
+          "/projects/arrcoat-colour-explorer/mobile-swatch-concrete.webp",
+          "/projects/arrcoat-colour-explorer/mobile-swatch-travertine.webp",
+        ],
+        imageLabels: ["Stacked tabs, two-column grid", "Concrete finish selected", "Travertine finish selected"],
+        layout: "phone",
       },
     ],
     distributions: [

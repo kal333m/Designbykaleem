@@ -1,11 +1,9 @@
 import Image from "next/image";
 import type { ScreenBlock as ScreenBlockData } from "@/lib/projects";
 import { RoleArchitecture } from "@/components/RoleArchitecture";
-import { ResponsiveShowcase } from "@/components/ResponsiveShowcase";
 
 const diagrams = {
   roleArchitecture: RoleArchitecture,
-  responsive: ResponsiveShowcase,
 };
 
 export function ScreenBlock({ title, goal, decisions, images, imageLabels, diagram, layout }: ScreenBlockData) {
