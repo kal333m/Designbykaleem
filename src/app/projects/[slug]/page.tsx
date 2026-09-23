@@ -13,9 +13,17 @@ import { ScaleStats } from "@/components/ScaleStats";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Footer } from "@/components/Footer";
 import { KanbanIllustration } from "@/components/KanbanIllustration";
+import { AtlasIllustration } from "@/components/AtlasIllustration";
+import { ProcurementIllustration } from "@/components/ProcurementIllustration";
+import { GuardianIllustration } from "@/components/GuardianIllustration";
+import { JourneyIllustration } from "@/components/JourneyIllustration";
 
 const heroIllustrations = {
   kanban: KanbanIllustration,
+  atlas: AtlasIllustration,
+  procure: ProcurementIllustration,
+  guardian: GuardianIllustration,
+  journey: JourneyIllustration,
 };
 
 export function generateStaticParams() {
@@ -128,6 +136,14 @@ export default async function ProjectPage({
               )}
             </Section>
 
+            <Section heading="Impact">
+              <p className="text-base leading-relaxed">{project.outcome}</p>
+              {project.scaleStats && <ScaleStats stats={project.scaleStats} />}
+              {project.metrics?.map((chart) => (
+                <ImpactChart key={chart.title} {...chart} />
+              ))}
+            </Section>
+
             <Section heading="Process">
               <p className="text-base leading-relaxed">{project.process}</p>
               {project.researchInsights && (
@@ -148,20 +164,18 @@ export default async function ProjectPage({
                 </div>
               )}
               {project.distributions && (
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div
+                  className={
+                    project.distributions.length > 1
+                      ? "grid sm:grid-cols-2 gap-4"
+                      : "grid gap-4"
+                  }
+                >
                   {project.distributions.map((d) => (
                     <DistributionChart key={d.title} {...d} />
                   ))}
                 </div>
               )}
-            </Section>
-
-            <Section heading="Impact">
-              <p className="text-base leading-relaxed">{project.outcome}</p>
-              {project.scaleStats && <ScaleStats stats={project.scaleStats} />}
-              {project.metrics?.map((chart) => (
-                <ImpactChart key={chart.title} {...chart} />
-              ))}
             </Section>
 
             {project.reflection && (

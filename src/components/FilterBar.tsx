@@ -23,40 +23,6 @@ type Props = {
 const clientTypes: (ClientType | "All")[] = ["All", "B2B", "B2C"];
 const platforms: (Platform | "All")[] = ["All", "Web", "Mobile"];
 
-function SegmentedGroup<T extends string>({
-  label,
-  value,
-  options,
-  onChange,
-}: {
-  label: string;
-  value: T;
-  options: T[];
-  onChange: (v: T) => void;
-}) {
-  return (
-    <div>
-      <p className="text-xs uppercase tracking-wide text-muted mb-2">{label}</p>
-      <div className="flex flex-wrap gap-2">
-        {options.map((opt) => (
-          <button
-            key={opt}
-            onClick={() => onChange(opt)}
-            className={clsx(
-              "rounded-[var(--radius-pill)] px-3.5 py-1.5 text-sm font-medium transition-colors",
-              value === opt
-                ? "bg-foreground text-background"
-                : "border border-border text-muted hover:text-foreground"
-            )}
-          >
-            {opt}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function Chip({ label, onRemove }: { label: string; onRemove: () => void }) {
   return (
     <button
@@ -65,6 +31,119 @@ function Chip({ label, onRemove }: { label: string; onRemove: () => void }) {
     >
       {label}
       <span aria-hidden>✕</span>
+    </button>
+  );
+}
+
+function Dropdown({
+  label,
+  active,
+  children,
+}: {
+  label: string;
+  active: boolean;
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, [open]);
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className={clsx(
+          "flex items-center gap-1.5 rounded-[var(--radius-pill)] border px-3.5 py-2.5 text-sm font-medium transition-colors whitespace-nowrap",
+          open || active
+            ? "border-foreground text-foreground"
+            : "border-border text-muted hover:text-foreground"
+        )}
+      >
+        {label}
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          className={clsx(
+            "h-3.5 w-3.5 transition-transform duration-200",
+            open && "rotate-180"
+          )}
+        >
+          <path
+            d="M6 9l6 6 6-6"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+
+      {open && (
+        <div className="absolute left-0 z-30 mt-2 min-w-[190px] rounded-2xl border border-border bg-surface p-3 shadow-xl flex flex-col gap-1">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Option({
+  label,
+  selected,
+  onClick,
+  checkbox,
+}: {
+  label: string;
+  selected: boolean;
+  onClick: () => void;
+  checkbox?: boolean;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={clsx(
+        "flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-sm text-left transition-colors",
+        selected ? "text-foreground" : "text-muted hover:text-foreground"
+      )}
+    >
+      {checkbox ? (
+        <span
+          className={clsx(
+            "flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-colors",
+            selected ? "bg-foreground border-foreground" : "border-border"
+          )}
+        >
+          {selected && (
+            <svg viewBox="0 0 24 24" fill="none" className="h-2.5 w-2.5">
+              <path
+                d="M5 12l5 5L20 7"
+                stroke="var(--background)"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          )}
+        </span>
+      ) : (
+        <span
+          className={clsx(
+            "h-1.5 w-1.5 shrink-0 rounded-full",
+            selected ? "bg-foreground" : "bg-transparent"
+          )}
+        />
+      )}
+      {label}
     </button>
   );
 }
@@ -79,20 +158,6 @@ export function FilterBar({
   domains,
   onDomainsChange,
 }: Props) {
-  const [panelOpen, setPanelOpen] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!panelOpen) return;
-    const onClick = (e: MouseEvent) => {
-      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
-        setPanelOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
-  }, [panelOpen]);
-
   const activeCount =
     (clientType !== "All" ? 1 : 0) + (platform !== "All" ? 1 : 0) + domains.length;
 
@@ -110,8 +175,8 @@ export function FilterBar({
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-wrap items-center gap-3">
-        <div className="relative flex-1 min-w-[220px]">
+      <div className="flex flex-wrap items-center gap-2.5">
+        <div className="relative w-full sm:w-52">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -128,68 +193,57 @@ export function FilterBar({
           />
         </div>
 
-        <div className="relative" ref={panelRef}>
-          <button
-            onClick={() => setPanelOpen((v) => !v)}
-            className={clsx(
-              "flex items-center gap-2 rounded-[var(--radius-pill)] border px-4 py-2.5 text-sm font-medium transition-colors",
-              panelOpen || activeCount > 0
-                ? "border-foreground text-foreground"
-                : "border-border text-muted hover:text-foreground"
-            )}
-          >
-            Filters
-            {activeCount > 0 && (
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-foreground text-background text-xs">
-                {activeCount}
-              </span>
-            )}
-          </button>
+        <Dropdown
+          label={clientType === "All" ? "Client" : clientType}
+          active={clientType !== "All"}
+        >
+          {clientTypes.map((opt) => (
+            <Option
+              key={opt}
+              label={opt}
+              selected={clientType === opt}
+              onClick={() => onClientTypeChange(opt)}
+            />
+          ))}
+        </Dropdown>
 
-          {panelOpen && (
-            <div className="absolute right-0 z-30 mt-2 w-72 rounded-2xl border border-border bg-surface p-5 shadow-xl flex flex-col gap-5">
-              <SegmentedGroup
-                label="Client"
-                value={clientType}
-                options={clientTypes}
-                onChange={onClientTypeChange}
-              />
-              <SegmentedGroup
-                label="Platform"
-                value={platform}
-                options={platforms}
-                onChange={onPlatformChange}
-              />
-              <div>
-                <p className="text-xs uppercase tracking-wide text-muted mb-2">Domain</p>
-                <div className="flex flex-wrap gap-2">
-                  {domainOptions.map((d) => (
-                    <button
-                      key={d}
-                      onClick={() => toggleDomain(d)}
-                      className={clsx(
-                        "rounded-[var(--radius-pill)] px-3.5 py-1.5 text-sm font-medium transition-colors",
-                        domains.includes(d)
-                          ? "bg-foreground text-background"
-                          : "border border-border text-muted hover:text-foreground"
-                      )}
-                    >
-                      {d}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              {activeCount > 0 && (
-                <button
-                  onClick={clearAll}
-                  className="text-xs text-muted hover:text-accent transition-colors self-start"
-                >
-                  Clear all
-                </button>
-              )}
-            </div>
-          )}
-        </div>
+        <Dropdown
+          label={platform === "All" ? "Platform" : platform}
+          active={platform !== "All"}
+        >
+          {platforms.map((opt) => (
+            <Option
+              key={opt}
+              label={opt}
+              selected={platform === opt}
+              onClick={() => onPlatformChange(opt)}
+            />
+          ))}
+        </Dropdown>
+
+        <Dropdown
+          label={domains.length > 0 ? `Domain · ${domains.length}` : "Domain"}
+          active={domains.length > 0}
+        >
+          {domainOptions.map((d) => (
+            <Option
+              key={d}
+              label={d}
+              selected={domains.includes(d)}
+              onClick={() => toggleDomain(d)}
+              checkbox
+            />
+          ))}
+        </Dropdown>
+
+        {activeCount > 0 && (
+          <button
+            onClick={clearAll}
+            className="text-xs text-muted hover:text-accent transition-colors ml-1"
+          >
+            Clear all
+          </button>
+        )}
       </div>
 
       {activeCount > 0 && (

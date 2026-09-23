@@ -1,18 +1,17 @@
-// TODO: replace with your real details.
 export const contactLinks = [
   {
     label: "Email",
-    value: "hello@example.com",
-    href: "mailto:hello@example.com",
+    value: "kaleem.ali485@gmail.com",
+    href: "mailto:kaleem.ali485@gmail.com",
   },
   {
     label: "LinkedIn",
-    value: "linkedin.com/in/kaleemali",
-    href: "https://linkedin.com/in/kaleemali",
+    value: "linkedin.com/in/kaleem-ali-b1566a258",
+    href: "https://www.linkedin.com/in/kaleem-ali-b1566a258/",
   },
   {
     label: "Phone",
-    value: "+1 (000) 000-0000",
-    href: "tel:+10000000000",
+    value: "+91 84938 46911",
+    href: "tel:+918493846911",
   },
 ];

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useContactModal } from "@/components/ContactModal";
 import { DesignAnimation } from "@/components/DesignAnimation";
+import { SquiggleLink } from "@/components/SquiggleLink";
 
 const container = {
   hidden: {},
@@ -82,19 +83,13 @@ export function Hero() {
 
         <motion.p variants={item} className="mt-10 text-lg">
           Take a look at{" "}
-          <a
-            href="#work"
-            className="font-medium text-foreground visited:text-foreground underline decoration-border decoration-1 underline-offset-4 hover:decoration-accent hover:text-accent transition-colors"
-          >
+          <SquiggleLink as="a" href="#work" delay={1.3} variant={0}>
             the work
-          </a>
+          </SquiggleLink>
           , or just{" "}
-          <button
-            onClick={openContact}
-            className="font-medium text-foreground underline decoration-border decoration-1 underline-offset-4 hover:decoration-accent hover:text-accent transition-colors"
-          >
+          <SquiggleLink as="button" onClick={openContact} delay={1.5} variant={1}>
             say hello
-          </button>
+          </SquiggleLink>
           .
         </motion.p>
         </div>
