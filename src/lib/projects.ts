@@ -4,6 +4,7 @@ export type Platform = "Web" | "Mobile";
 // Starter set based on your own project mix, add or remove freely as real projects come in.
 export const domainOptions = [
   "AI",
+  "SaaS",
   "Enterprise",
   "Cybersecurity",
   "Fintech",
@@ -104,7 +105,7 @@ export const projects: Project[] = [
       "Redesigning how bid teams navigate, tag, and act on tender requirements, from Kanban to compliance matrix, end to end.",
     clientType: "B2B",
     platform: ["Web"],
-    domains: ["AI", "Enterprise"],
+    domains: ["AI", "SaaS", "Enterprise"],
     year: "2026",
     role: "Senior Product Designer",
     team: "1 Product Designer, 1 Product Manager, 1 Front-End Engineer, 1 Backend Engineer",
@@ -282,7 +283,7 @@ export const projects: Project[] = [
       "Designing the agentic memory layer that lets Atlas act on persistent context, skills, and shared team knowledge, instead of starting cold every session.",
     clientType: "B2B",
     platform: ["Web"],
-    domains: ["AI", "Enterprise"],
+    domains: ["AI", "SaaS", "Enterprise"],
     year: "2026",
     role: "Senior Product Designer",
     team: "1 Product Designer, 1 Product Manager, 1 Front-End Engineer, 1 AI Engineer",
