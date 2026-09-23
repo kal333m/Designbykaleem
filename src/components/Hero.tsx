@@ -76,7 +76,7 @@ export function Hero() {
           variants={item}
           className="mt-6 text-lg text-muted leading-relaxed max-w-xl"
         >
-          I design B2B and AI products: the high-stakes, unglamorous kind
+          I design B2B, SaaS, and AI products: the high-stakes, unglamorous kind
           where getting it wrong costs someone a workday. Most AI tools
           still look like the model designed them. Mine don&apos;t.
         </motion.p>
