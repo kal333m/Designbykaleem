@@ -2,7 +2,7 @@
 
 import { useContactModal } from "@/components/ContactModal";
 import { DesignAnimation } from "@/components/DesignAnimation";
-import { SquiggleLink } from "@/components/SquiggleLink";
+import { CtaButton } from "@/components/CtaButton";
 
 const rise = (i: number) => ({ "--i": i }) as React.CSSProperties;
 
@@ -61,17 +61,15 @@ export function Hero() {
           still look like the model designed them. Mine don&apos;t.
         </p>
 
-        <p className="hero-rise mt-10 text-lg" style={rise(4)}>
-          Take a look at{" "}
-          <SquiggleLink as="a" href="#work" delay={1.3} variant={0}>
-            the work
-          </SquiggleLink>
-          , or just{" "}
-          <SquiggleLink as="button" onClick={openContact} delay={1.5} variant={1}>
-            say hello
-          </SquiggleLink>
-          .
-        </p>
+        <div className="hero-rise mt-10 flex flex-wrap items-center gap-3" style={rise(4)}>
+          <CtaButton variant="primary" href="#work">
+            See the work
+          </CtaButton>
+          <span className="text-sm text-muted">or</span>
+          <CtaButton variant="secondary" onClick={openContact}>
+            Say hello
+          </CtaButton>
+        </div>
         </div>
 
         <div className="hero-rise" style={rise(5)}>
