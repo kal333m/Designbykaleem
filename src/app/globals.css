@@ -103,6 +103,11 @@ body {
   50% { transform: translateY(6px); }
 }
 
+@keyframes arrow-nudge {
+  0%, 100% { transform: translateY(-2px); }
+  50% { transform: translateY(2px); }
+}
+
 .hero-rise {
   animation: hero-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: calc(var(--i, 0) * 45ms);
@@ -122,11 +127,16 @@ body {
   animation: scroll-bob 1.6s ease-in-out infinite;
 }
 
+.arrow-nudge {
+  animation: arrow-nudge 1.4s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-rise,
   .hero-slide,
   .hero-fade,
   .scroll-bob,
+  .arrow-nudge,
   .hero-blob-a,
   .hero-blob-b,
   .hero-blob-c {

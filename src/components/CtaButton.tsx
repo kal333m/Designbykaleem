@@ -10,7 +10,7 @@ const styles = {
 
 function ArrowDown() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className="scroll-bob h-4 w-4" aria-hidden>
+    <svg viewBox="0 0 24 24" fill="none" className="arrow-nudge h-4 w-4" aria-hidden>
       <path
         d="M12 5v14M6 13l6 6 6-6"
         stroke="currentColor"
