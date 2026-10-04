@@ -1,25 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useContactModal } from "@/components/ContactModal";
 import { DesignAnimation } from "@/components/DesignAnimation";
 import { SquiggleLink } from "@/components/SquiggleLink";
 
-const container = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 18 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
+const rise = (i: number) => ({ "--i": i }) as React.CSSProperties;
 
 export function Hero() {
   const openContact = useContactModal();
@@ -31,57 +16,52 @@ export function Hero() {
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div
-          className="hero-blob-a absolute -top-32 -left-24 h-[28rem] w-[28rem] rounded-full blur-[110px] opacity-60"
-          style={{ background: "var(--blob-a)" }}
+          className="hero-blob-a absolute -top-32 -left-24 h-[28rem] w-[28rem] rounded-full opacity-60"
+          style={{ background: "radial-gradient(circle, var(--blob-a) 0%, transparent 68%)" }}
         />
         <div
-          className="hero-blob-b absolute top-10 right-[-6rem] h-[26rem] w-[26rem] rounded-full blur-[110px] opacity-50"
-          style={{ background: "var(--blob-b)" }}
+          className="hero-blob-b absolute top-10 right-[-6rem] h-[26rem] w-[26rem] rounded-full opacity-50"
+          style={{ background: "radial-gradient(circle, var(--blob-b) 0%, transparent 68%)" }}
         />
         <div
-          className="hero-blob-c absolute bottom-[-10rem] left-1/3 h-[24rem] w-[24rem] rounded-full blur-[110px] opacity-40"
-          style={{ background: "var(--blob-c)" }}
+          className="hero-blob-c absolute bottom-[-10rem] left-1/3 h-[24rem] w-[24rem] rounded-full opacity-40"
+          style={{ background: "radial-gradient(circle, var(--blob-c) 0%, transparent 68%)" }}
         />
         <div className="grain-overlay absolute inset-0" />
       </div>
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="max-w-6xl mx-auto w-full pt-16 grid lg:grid-cols-2 gap-12 items-center"
-      >
+      <div className="max-w-6xl mx-auto w-full pt-16 grid lg:grid-cols-2 gap-12 items-center">
         <div className="max-w-2xl">
-        <motion.div variants={item} className="mb-6">
+        <div className="hero-rise mb-6" style={rise(0)}>
           <span className="inline-flex items-center gap-2 rounded-[var(--radius-pill)] border border-border bg-surface/80 px-3.5 py-1.5 text-xs font-medium text-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             Available
           </span>
-        </motion.div>
+        </div>
 
-        <motion.h1
-          variants={item}
-          className="text-5xl sm:text-7xl font-semibold tracking-tight leading-[1.05]"
+        <h1
+          className="hero-rise text-5xl sm:text-7xl font-semibold tracking-tight leading-[1.05]"
+          style={rise(1)}
         >
           Kaleem Ali
-        </motion.h1>
-        <motion.p
-          variants={item}
-          className="mt-3 text-2xl sm:text-3xl font-medium text-muted tracking-tight"
+        </h1>
+        <p
+          className="hero-rise mt-3 text-2xl sm:text-3xl font-medium text-muted tracking-tight"
+          style={rise(2)}
         >
           Engineer <span className="text-foreground">→</span> Designer.
-        </motion.p>
+        </p>
 
-        <motion.p
-          variants={item}
-          className="mt-6 text-lg text-muted leading-relaxed max-w-xl"
+        <p
+          className="hero-rise mt-6 text-lg text-muted leading-relaxed max-w-xl"
+          style={rise(3)}
         >
           I design B2B, SaaS, and AI products: the high-stakes, unglamorous kind
           where getting it wrong costs someone a workday. Most AI tools
           still look like the model designed them. Mine don&apos;t.
-        </motion.p>
+        </p>
 
-        <motion.p variants={item} className="mt-10 text-lg">
+        <p className="hero-rise mt-10 text-lg" style={rise(4)}>
           Take a look at{" "}
           <SquiggleLink as="a" href="#work" delay={1.3} variant={0}>
             the work
@@ -91,29 +71,23 @@ export function Hero() {
             say hello
           </SquiggleLink>
           .
-        </motion.p>
+        </p>
         </div>
 
-        <motion.div variants={item}>
+        <div className="hero-rise" style={rise(5)}>
           <DesignAnimation />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      <div
+        className="hero-fade absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        style={{ animationDelay: "1.1s" }}
       >
         <span className="text-xs text-muted tracking-wide">Scroll</span>
-        <motion.span
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-          className="h-8 w-5 rounded-full border border-border flex justify-center pt-1.5"
-        >
+        <span className="scroll-bob h-8 w-5 rounded-full border border-border flex justify-center pt-1.5">
           <span className="h-1.5 w-1.5 rounded-full bg-muted" />
-        </motion.span>
-      </motion.div>
+        </span>
+      </div>
     </section>
   );
 }

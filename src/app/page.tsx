@@ -1,6 +1,7 @@
 import { Hero } from "@/components/Hero";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { Footer } from "@/components/Footer";
+import { projects, toSummary } from "@/lib/projects";
 
 export default function Home() {
   return (
@@ -19,7 +20,7 @@ export default function Home() {
               Filter by client type or platform to see what&apos;s relevant to you.
             </p>
           </div>
-          <ProjectGrid />
+          <ProjectGrid projects={projects.map(toSummary)} />
         </section>
       </main>
       <Footer />

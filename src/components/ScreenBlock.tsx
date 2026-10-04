@@ -41,6 +41,13 @@ export function ScreenBlock({ title, goal, decisions, images, imageLabels, diagr
                   alt={title}
                   width={isPhone ? 900 : 1600}
                   height={isPhone ? 1954 : 900}
+                  sizes={
+                    isPhone
+                      ? "280px"
+                      : isCompare
+                        ? "(min-width: 640px) 260px, calc(100vw - 48px)"
+                        : "(min-width: 640px) 530px, calc(100vw - 48px)"
+                  }
                   className="w-full h-auto"
                 />
               </div>

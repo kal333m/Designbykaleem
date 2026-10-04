@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { projects } from "@/lib/projects";
+import { projects, toSummary } from "@/lib/projects";
 import { ImpactChart } from "@/components/ImpactChart";
 import { ProblemDiagnosis } from "@/components/ProblemDiagnosis";
 import { ResearchInsights } from "@/components/ResearchInsights";
@@ -56,7 +56,7 @@ export default async function ProjectPage({
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
 
-  const more = projects.filter((p) => p.slug !== project.slug).slice(0, 3);
+  const more = projects.filter((p) => p.slug !== project.slug).slice(0, 3).map(toSummary);
 
   return (
     <main className="pt-16">

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import type { Project } from "@/lib/projects";
+import type { ProjectSummary } from "@/lib/projects";
 import { KanbanGlyph, AtlasGlyph, ProcureGlyph, GuardianGlyph, JourneyGlyph, PaletteGlyph } from "@/components/ProjectGlyphs";
 
 const glyphs = {
@@ -14,7 +14,7 @@ const glyphs = {
   palette: PaletteGlyph,
 };
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project }: { project: ProjectSummary }) {
   const Glyph = project.thumbnailGlyph ? glyphs[project.thumbnailGlyph] : null;
 
   return (

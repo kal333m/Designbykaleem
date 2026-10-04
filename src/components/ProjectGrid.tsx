@@ -2,11 +2,12 @@
 
 import { useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { projects, type ClientType, type Domain, type Platform } from "@/lib/projects";
+import type { ProjectSummary } from "@/lib/projects";
+import type { ClientType, Domain, Platform } from "@/lib/taxonomy";
 import { FilterBar } from "@/components/FilterBar";
 import { ProjectCard } from "@/components/ProjectCard";
 
-export function ProjectGrid() {
+export function ProjectGrid({ projects }: { projects: ProjectSummary[] }) {
   const [search, setSearch] = useState("");
   const [clientType, setClientType] = useState<ClientType | "All">("All");
   const [platform, setPlatform] = useState<Platform | "All">("All");
@@ -24,7 +25,7 @@ export function ProjectGrid() {
       }
       return true;
     });
-  }, [search, clientType, platform, domains]);
+  }, [projects, search, clientType, platform, domains]);
 
   return (
     <div className="flex flex-col gap-10">

@@ -7,7 +7,7 @@ import {
   type ClientType,
   type Domain,
   type Platform,
-} from "@/lib/projects";
+} from "@/lib/taxonomy";
 
 type Props = {
   search: string;

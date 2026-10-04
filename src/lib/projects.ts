@@ -1,16 +1,4 @@
-export type ClientType = "B2B" | "B2C";
-export type Platform = "Web" | "Mobile";
-
-// Starter set based on your own project mix, add or remove freely as real projects come in.
-export const domainOptions = [
-  "AI",
-  "SaaS",
-  "Enterprise",
-  "Fintech",
-  "Education",
-  "Retail",
-] as const;
-export type Domain = (typeof domainOptions)[number];
+import type { ClientType, Domain, Platform } from "./taxonomy";
 
 export type ChartPoint = { label: string; value: number };
 
@@ -95,6 +83,17 @@ export type Project = {
   reflection?: string;
   liveUrl?: string;
 };
+
+// The few fields a card needs, so client components never receive full case studies.
+export type ProjectSummary = Pick<
+  Project,
+  "slug" | "title" | "tagline" | "clientType" | "platform" | "domains" | "cover" | "thumbnailGlyph"
+>;
+
+export function toSummary(p: Project): ProjectSummary {
+  const { slug, title, tagline, clientType, platform, domains, cover, thumbnailGlyph } = p;
+  return { slug, title, tagline, clientType, platform, domains, cover, thumbnailGlyph };
+}
 
 export const projects: Project[] = [
   {
