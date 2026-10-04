@@ -53,7 +53,7 @@ export function Hero() {
         </p>
 
         <p
-          className="hero-rise mt-6 text-lg text-muted leading-relaxed max-w-xl"
+          className="hero-slide mt-6 text-lg text-muted leading-relaxed max-w-xl"
           style={rise(3)}
         >
           I design B2B, SaaS, and AI products: the high-stakes, unglamorous kind
